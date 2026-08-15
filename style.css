@@ -1,18 +1,17 @@
 @font-face {
-    font-family: 'Archivo-Black';
-    src: url('../fonts/Archivo/Archivo-Black.ttf') format('truetype');
+    font-family: Archivo-Black;
+    src: url("fonts/Archivo/Archivo-Black.ttf");
 }
 
 @font-face {
-    font-family: 'Archivo-Bold';
-    src: url('../fonts/Archivo/Archivo-Bold.ttf') format('truetype');
+    font-family: Archivo-Bold;
+    src: url("fonts/Archivo/Archivo-Bold.ttf");
 }
 
 @font-face {
-    font-family: 'Archivo-Medium';
-    src: url('../fonts/Archivo/Archivo-Medium.ttf') format('truetype');
+    font-family: Archivo-Medium;
+    src: url("fonts/Archivo/Archivo-Medium.ttf");
 }
-
 
 :root {
     --bg: #1D1E20;
