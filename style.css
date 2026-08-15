@@ -1,16 +1,25 @@
 @font-face {
-    font-family: Archivo-Black;
-    src: url("fonts/Archivo/Archivo-Black.ttf");
+    font-family: "Archivo";
+    src: url("fonts/Archivo/Archivo-Black.ttf") format("truetype");
+    font-weight: 900;
+    font-style: normal;
+    font-display: swap;
 }
 
 @font-face {
-    font-family: Archivo-Bold;
-    src: url("fonts/Archivo/Archivo-Bold.ttf");
+    font-family: "Archivo";
+    src: url("fonts/Archivo/Archivo-Bold.ttf") format("truetype");
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
 }
 
 @font-face {
-    font-family: Archivo-Medium;
-    src: url("fonts/Archivo/Archivo-Medium.ttf");
+    font-family: "Archivo";
+    src: url("fonts/Archivo/Archivo-Medium.ttf") format("truetype");
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
 }
 
 :root {
@@ -44,7 +53,8 @@ body {
 }
 
 .navText {
-    font-family: Archivo-Black;
+    font-family: "Archivo", sans-serif;
+    font-weight: 900;
     color: #ffffff;
     margin-left: 20px;
     
@@ -63,7 +73,8 @@ body {
 
 .Title {
     color: #ffffff;
-    font-family: Archivo-Black;
+    font-family: "Archivo", sans-serif;
+    font-weight: 900;
     font-size: 150px;
     bottom: 165px;
     left: 20px;
@@ -85,7 +96,8 @@ body {
 
 .TitleSubtitle {
     color: #ffffff;
-    font-family: Archivo-Medium;
+    font-family: "Archivo", sans-serif;
+    font-weight: 500;
     bottom: 114px;
     left: 30px;
     position: absolute;
@@ -139,7 +151,8 @@ div.about {
 }
 /* Title */
 .aboutTittle {
-    font-family: Archivo-Bold;
+    font-family: "Archivo", sans-serif;
+    font-weight: 700;
     color: var(--bg);
     font-size: 50px;
     position: static !important;
@@ -148,7 +161,8 @@ div.about {
 }
 
 .aboutText {
-    font-family: Archivo-Medium;
+    font-family: "Archivo", sans-serif;
+    font-weight: 500;
     color: var(--bg);
     font-size: 30px;
     position: absolute;
@@ -162,7 +176,8 @@ div.about {
     transition: 1s;
 }
 .aboutTittle:not(hover) {
-    font-family: Archivo-Bold;
+    font-family: "Archivo", sans-serif;
+    font-weight: 700;
     color: var(--bg);
     -webkit-text-stroke: 0px var(--bg);
     transition: 1s;
