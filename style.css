@@ -129,14 +129,15 @@ body {
 
 /* Outer Section */
 section.about {
-    background-color: antiquewhite;
+    background-image: url("public/Untitled-2.png");
+    background-color: #1e10ba;
     height: 1000px;
     width: 100%;
     position: absolute;
     top: 900px;
 }
 
-/* Inner Div */
+    /* Inner Div */
 /* Inner Div */
 div.about {
     width: 100%;
@@ -153,7 +154,7 @@ div.about {
 .aboutTittle {
     font-family: "Archivo", sans-serif;
     font-weight: 700;
-    color: var(--bg);
+    color: #ffffff;
     font-size: 50px;
     position: static !important;
     margin: 0 !important;
@@ -163,11 +164,11 @@ div.about {
 .aboutText {
     font-family: "Archivo", sans-serif;
     font-weight: 500;
-    color: var(--bg);
+    color: #ffffff;
     font-size: 30px;
     position: absolute;
     justify-content: center;
-    top: 80px;
+    top: 100px;
     text-align: center;
 }
 
@@ -178,7 +179,7 @@ div.about {
 .aboutTittle:not(hover) {
     font-family: "Archivo", sans-serif;
     font-weight: 700;
-    color: var(--bg);
+    color: #ffffff;
     -webkit-text-stroke: 0px var(--bg);
     transition: 1s;
 }
