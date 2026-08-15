@@ -228,3 +228,83 @@ div.about {
         transform: translate(0, 0) scale(1) rotate(90deg);
     }
 }
+
+/* ===== Responsive: Tablets & small laptops ===== */
+@media (max-width: 1024px) {
+    .Title {
+        font-size: 110px;
+    }
+    .TitleSubtitle {
+        font-size: 22px;
+    }
+}
+
+/* ===== Responsive: Mobile ===== */
+@media (max-width: 768px) {
+    body {
+        overflow-x: hidden;
+    }
+
+    .navText {
+        margin-left: 16px;
+        font-size: 14px;
+    }
+
+    .Title {
+        font-size: 64px;
+        left: 16px;
+        bottom: 150px;
+    }
+
+    .TitleSubtitle {
+        font-size: 15px;
+        left: 20px;
+        bottom: 118px;
+        right: 16px;
+        line-height: 1.4;
+    }
+
+    .Gradient_Fill_3 {
+        height: 500px;
+    }
+
+    .Gradient2 {
+        height: 140px;
+        right: 10px;
+    }
+
+    section.about {
+        height: 850px;
+    }
+
+    .aboutTittle {
+        font-size: 34px;
+        padding-top: 40px !important;
+    }
+
+    .aboutText {
+        font-size: 19px;
+        top: 90px;
+        padding: 0 24px;
+        line-height: 1.5;
+    }
+}
+
+/* ===== Responsive: Small phones ===== */
+@media (max-width: 480px) {
+    .Title {
+        font-size: 50px;
+        bottom: 165px;
+    }
+
+    .TitleSubtitle {
+        font-size: 14px;
+        bottom: 138px;
+        left: 20px;
+    }
+
+    .aboutText {
+        font-size: 17px;
+        top: 85px;
+    }
+}
