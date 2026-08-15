@@ -1,16 +1,16 @@
 @font-face {
-    font-family: Archivo-Black;
-    src: url("../fonts/Archivo%20/Archivo-Black.ttf");
+    font-family: 'Archivo-Black';
+    src: url('../fonts/Archivo/Archivo-Black.ttf') format('truetype');
 }
 
 @font-face {
-    font-family: Archivo-Bold;
-    src: url("../fonts/Archivo%20/Archivo-Bold.ttf");
+    font-family: 'Archivo-Bold';
+    src: url('../fonts/Archivo/Archivo-Bold.ttf') format('truetype');
 }
 
 @font-face {
-    font-family: Archivo-Medium;
-    src: url("../fonts/Archivo%20/Archivo-Medium.ttf");
+    font-family: 'Archivo-Medium';
+    src: url('../fonts/Archivo/Archivo-Medium.ttf') format('truetype');
 }
 
 
@@ -56,6 +56,10 @@ body {
 
 .navText:hover {
     text-decoration-color: #ffffff;
+}
+.navText, .Title {
+    font-family: 'Archivo', sans-serif;
+    font-weight: 900; /* 900 for Black, 700 for Bold, 500 for Medium */
 }
 
 .Title {
