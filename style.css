@@ -1,16 +1,16 @@
 @font-face {
     font-family: Archivo-Black;
-    src: url('./fonts/Archivo/Archivo-Black.ttf');
+    src: url("../fonts/Archivo/Archivo-Black.ttf");
 }
 
 @font-face {
     font-family: Archivo-Bold;
-    src: url('./fonts/Archivo/Archivo-Bold.ttf');
+    src: url("../fonts/Archivo/Archivo-Bold.ttf");
 }
 
 @font-face {
     font-family: Archivo-Medium;
-    src: url('./fonts/Archivo/Archivo-Medium.ttf');
+    src: url("../fonts/Archivo/Archivo-Medium.ttf");
 }
 
 
