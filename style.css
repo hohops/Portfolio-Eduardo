@@ -1,0 +1,211 @@
+@font-face {
+    font-family: Archivo-Black;
+    src: url(/fonts/Archivo/Archivo-Black.ttf);
+}
+
+@font-face {
+    font-family: Archivo-Bold;
+    src: url(/fonts/Archivo/Archivo-Bold.ttf);
+}
+
+@font-face {
+    font-family: Archivo-Medium;
+    src: url(/fonts/Archivo/Archivo-Medium.ttf);
+}
+
+
+:root {
+    --bg: #1D1E20;
+
+}
+
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    height: 1000px;
+    background-color: var(--bg);
+    /* Add a background image alongside the color to allow blending */
+    background-image: url("Gradient Fill 3.png"); 
+    background-size: cover;
+    background-blend-mode: subtract;
+}
+
+
+
+.Navbar {
+    display: flex;
+    justify-content: flex-start;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 9999;
+    mix-blend-mode: difference; /* Move blend mode to the parent nav */
+}
+
+.navText {
+    font-family: Archivo-Black;
+    color: #ffffff;
+    margin-left: 20px;
+    
+
+    text-decoration: underline transparent; 
+    transition: text-decoration-color 0.3s ease, color 0.3s ease;
+}
+
+.navText:hover {
+    text-decoration-color: #ffffff;
+}
+
+.Title {
+    color: #ffffff;
+    font-family: Archivo-Black;
+    font-size: 150px;
+    bottom: 165px;
+    left: 20px;
+    position: absolute;
+    margin: 0;
+    line-height: 0.85;
+
+}
+
+.Title:hover{
+    color: antiquewhite;
+    transition: 0.75s;
+}
+
+.Title:not(:hover){
+    color: #ffffff;
+    transition: 0.75s;
+}
+
+.TitleSubtitle {
+    color: #ffffff;
+    font-family: Archivo-Medium;
+    bottom: 114px;
+    left: 30px;
+    position: absolute;
+}
+
+.TitleSubtitle:hover{
+    color: antiquewhite;
+    transition: 0.75s;
+}
+
+.TitleSubtitle:not(:hover){
+    color: #ffffff;
+    transition: 0.75s;
+}
+
+.hero {
+    height: 100px;
+    background-color: var(--bg);
+}
+
+.corner {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    height: 350px;
+
+}
+
+
+/* Outer Section */
+section.about {
+    background-color: antiquewhite;
+    height: 1000px;
+    width: 100%;
+    position: absolute;
+    top: 900px;
+}
+
+/* Inner Div */
+/* Inner Div */
+div.about {
+    width: 100%;
+    height: 100%;
+    
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    
+    /* Use mix-blend-mode if you want div.about to blend with what is behind it */
+    mix-blend-mode: subtract; 
+}
+/* Title */
+.aboutTittle {
+    font-family: Archivo-Bold;
+    color: var(--bg);
+    font-size: 50px;
+    position: static !important;
+    margin: 0 !important;
+    padding-top: 50px !important;
+}
+
+.aboutText {
+    font-family: Archivo-Medium;
+    color: var(--bg);
+    font-size: 30px;
+    position: absolute;
+    justify-content: center;
+    top: 80px;
+    text-align: center;
+}
+
+.aboutTittle:hover {
+    transform: translateY(-10px);
+    transition: 1s;
+}
+.aboutTittle:not(hover) {
+    font-family: Archivo-Bold;
+    color: var(--bg);
+    -webkit-text-stroke: 0px var(--bg);
+    transition: 1s;
+}
+
+.Gradient_Fill_3 {
+    background-image: url("Gradient Fill 3.png");
+    background-size: contain;      /* Ensures image scales properly */
+    background-repeat: no-repeat;
+    background-position: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;                  /* Must give width so background shows */
+    height: 900px;
+    z-index: 0;                   /* Lower z-index so it stays behind text */
+    pointer-events: none;         /* Prevents it from blocking clicks/hovers */
+    
+    /* Keep your rotation if intended */
+    transform: rotate(90deg);  
+    animation: moveGradients 20s ease-in-out infinite;
+    will-change: transform;   
+}
+
+.Gradient2 {
+    height: 250px;
+    position: fixed;
+    right: 50px;
+    animation: moveGradients 15s ease-in-out infinite;
+    will-change: transform;
+}
+
+@keyframes moveGradients {
+    0% {
+        transform: translate(0, 0) scale(1) rotate(90deg);
+    }
+    25% {
+        transform: translate(150px, -100px) scale(1.1) rotate(110deg);
+    }
+    50% {
+        transform: translate(-120px, 120px) scale(0.9) rotate(70deg);
+    }
+    75% {
+        transform: translate(100px, 80px) scale(1.05) rotate(100deg);
+    }
+    100% {
+        transform: translate(0, 0) scale(1) rotate(90deg);
+    }
+}
