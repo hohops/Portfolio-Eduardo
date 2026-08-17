@@ -219,7 +219,7 @@ img {
     justify-content: flex-end;
     overflow: hidden;
     background: var(--black);
-    padding: 0 var(--gut) clamp(104px, 15vh, 160px);
+    padding: 0 var(--gut) clamp(150px, 20vh, 220px);
     isolation: isolate;
 }
 
