@@ -4,30 +4,138 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Eduardo Cruz — SysAdmin, DevSecOps and DevOps based in Lisbon, Portugal.">
+    <title>Eduardo Cruz — SysAdmin · DevSecOps · DevOps</title>
     <link rel="stylesheet" href="style.css">
-    <title>Document</title>
 </head>
 
 <body>
-    <section class="Hero">
-        <nav class="Navbar">
-            <p class="navText">Eduardo Cruz</p>
-        </nav>
-        <img src="public/Gradient_Fill_3.png" class="Gradient_Fill_3">
-        <img src="public/Gradint 2.png" class="Gradient2">
-        <h1 class="Title">Eduardo <br>Cruz</h1>
-        <h3 class="TitleSubtitle">SysAdmin, Web Developer and DevOps</h3>
-    </section>
-    <section class="about">
-        <div class="about">
-            <h1 class="aboutTittle">About Me</h1>
-            <h3 class="aboutText">HI I’m Eduardo based in Lisbon with a passion for IT.
 
-<br> Always down to connect and collaborate!</h3>
+    <!-- Scroll path rail -->
+    <nav class="rail" aria-label="Sections">
+        <a class="rail__dot is-active" href="#about"><span class="rail__label">01 About</span></a>
+        <a class="rail__dot" href="#practice"><span class="rail__label">02 Practice</span></a>
+        <a class="rail__dot" href="#contact"><span class="rail__label">03 Contact</span></a>
+    </nav>
 
-        </div>
-    </section>
+    <main>
+        <section class="hero" id="top">
+            <div class="orbs" aria-hidden="true">
+                <img class="orbs__img orbs__img--a" src="public/Gradient_Fill_3.png" alt="">
+                <img class="orbs__img orbs__img--b" src="public/Gradint 2.png" alt="">
+                <span class="orbs__glow" aria-hidden="true"></span>
+            </div>
+
+            <span class="watermark" aria-hidden="true">Eduardo Cruz</span>
+
+            <figure class="hero__photo" aria-hidden="true">
+                <img src="public/image-vscode.png" alt="">
+            </figure>
+
+            <div class="hero__content">
+                <p class="eyebrow hero__eyebrow">Portfolio — Lisbon, PT</p>
+                <h1 class="hero__title">
+                    <span class="hero__line"><span class="hero__line-inner">Eduardo</span></span>
+                    <span class="hero__line"><span class="hero__line-inner">Cruz</span></span>
+                </h1>
+                <p class="hero__role">SysAdmin · DevSecOps · DevOps</p>
+                <p class="hero__tag">Systems you can count on. Interfaces people remember.</p>
+            </div>
+
+            <div class="scroll-cue" aria-hidden="true">
+                <span>Scroll</span>
+                <span class="scroll-cue__track"></span>
+            </div>
+        </section>
+
+        <section class="section" id="about">
+            <header class="section__head reveal">
+                <p class="eyebrow eyebrow--dot">01 — About</p>
+                <h2 class="section__title">Rooted in Lisbon.<br>Building for the web.</h2>
+            </header>
+            <p class="about__copy reveal">Hi, I'm Eduardo. I keep systems alive, ship interfaces people actually use,
+                and automate everything in between — with a genuine <span class="hl">passion for IT</span>. Always down
+                to connect and collaborate.</p>
+            <dl class="facts reveal">
+                <div class="fact">
+                    <dt>Location</dt>
+                    <dd>Lisbon, PT</dd>
+                </div>
+                <div class="fact">
+                    <dt>Focus</dt>
+                    <dd>Systems · Security · Automation</dd>
+                </div>
+                <div class="fact">
+                    <dt>Status</dt>
+                    <dd>Open to collaborate</dd>
+                </div>
+            </dl>
+        </section>
+
+        <section class="section" id="practice">
+            <header class="section__head reveal">
+                <p class="eyebrow eyebrow--dot">02 — Practice</p>
+                <h2 class="section__title">Three lanes, one focus.</h2>
+                <p class="section__lede">The infrastructure behind the work, the security within it, and the pipeline in
+                    between.</p>
+            </header>
+            <div class="lanes">
+                <article class="lane reveal">
+                    <span class="lane__dot" aria-hidden="true"></span>
+                    <h3 class="lane__name">SysAdmin</h3>
+                    <p class="lane__desc">Uptime is a feature. I run, monitor, and harden the infrastructure behind the
+                        work.</p>
+                    <ul class="lane__tools">
+                        <li>Linux</li>
+                        <li>Windows Server</li>
+                        <li>Networking</li>
+                        <li>Monitoring</li>
+                    </ul>
+                </article>
+                <article class="lane reveal">
+                    <span class="lane__dot" aria-hidden="true"></span>
+                    <h3 class="lane__name">DevSecOps</h3>
+                    <p class="lane__desc">Security baked into the pipeline — secure builds, hardening, and audits from
+                        day one.</p>
+                    <ul class="lane__tools">
+                        <li>Security Scanning</li>
+                        <li>SAST</li>
+                        <li>IAM</li>
+                        <li>Hardening</li>
+                    </ul>
+                </article>
+                <article class="lane reveal">
+                    <span class="lane__dot" aria-hidden="true"></span>
+                    <h3 class="lane__name">DevOps</h3>
+                    <p class="lane__desc">The glue that ties it together. Pipelines, automation, and environments that behave.
+                    </p>
+                    <ul class="lane__tools">
+                        <li>Docker</li>
+                        <li>CI/CD</li>
+                        <li>Cloud</li>
+                        <li>IaC</li>
+                    </ul>
+                </article>
+            </div>
+        </section>
+
+        <section class="section section--contact" id="contact">
+            <header class="section__head reveal">
+                <p class="eyebrow eyebrow--dot">03 — Contact</p>
+                <h2 class="section__title">Let's build something that lasts.</h2>
+                <p class="section__lede">Open for freelance, collaboration, and full-time roles in tech.</p>
+            </header>
+            <!-- TODO: replace the mailto address with your real email -->
+            <a class="cta reveal" href="mailto:hello@eduardocostadacruz11@gmail.com">Say hello</a>
+        </section>
+    </main>
+
+    <!-- Floating action bar -->
+    <div class="dock">
+        <p class="dock__credit">© Eduardo Cruz — Lisbon, PT</p>
+    </div>
+
+    <script src="script.js"></script>
 </body>
 
 </html>
-<script src="script.js"></script>
