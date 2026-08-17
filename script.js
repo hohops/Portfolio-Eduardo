@@ -24,6 +24,10 @@ document.addEventListener("DOMContentLoaded", () => {
     // Rail scroll-spy + subtle parallax
     const sections = $$("main section[id]");
     const dots = $$(".rail__dot");
+    // Pair each dot with the section it links to (the hero has no dot, so
+    // nothing is highlighted while you're on it)
+    const sectionDot = new Map();
+    dots.forEach((dot, i) => sectionDot.set(document.querySelector(dot.getAttribute("href")), i));
     const watermark = $(".watermark");
     const photo = $(".hero__photo");
 
@@ -32,9 +36,21 @@ document.addEventListener("DOMContentLoaded", () => {
         if (ticking) return;
         ticking = true;
         requestAnimationFrame(() => {
-            let current = 0;
-            sections.forEach((s, i) => {
-                if (s.getBoundingClientRect().top <= window.innerHeight * 0.4) current = i;
+            const vh = window.innerHeight;
+            const last = sections[sections.length - 1];
+            let current = -1;
+            sections.forEach((s) => {
+                const dotIndex = sectionDot.get(s);
+                if (dotIndex === undefined) return;
+                // A section takes over once you've scrolled into it — its top
+                // reaches its resting position (respects the scroll-margin used
+                // when clicking a rail dot). The last section can't always get
+                // that far before the page ends, so switch to it once it fills
+                // the upper part of the screen instead.
+                const reach = s === last
+                    ? vh * 0.4
+                    : parseFloat(getComputedStyle(s).scrollMarginTop) || 0;
+                if (Math.round(s.getBoundingClientRect().top) <= reach) current = dotIndex;
             });
             dots.forEach((dot, i) => dot.classList.toggle("is-active", i === current));
 
