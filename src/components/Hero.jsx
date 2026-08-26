@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { animate, createTimeline } from "animejs";
 import {
     motion,
@@ -12,11 +12,28 @@ import MeshText from "./originkit/ui/meshtexthover.tsx";
 const titleFont = {
     fontFamily: "'Archivo Expanded Black'",
     variant: "Black",
-    fontSize: 170,
 };
+
+// Track the h1's CSS scale (clamp(64px, 13vw, 190px)) so the canvas
+// glyphs match the line box at every breakpoint.
+function useTitleFontSize() {
+    const calc = () =>
+        Math.round(Math.min(Math.max(window.innerWidth * 0.13, 64), 170));
+    const [size, setSize] = useState(calc);
+
+    useEffect(() => {
+        const onResize = () => setSize(calc());
+        window.addEventListener("resize", onResize, { passive: true });
+        return () => window.removeEventListener("resize", onResize);
+    }, []);
+
+    return size;
+}
 
 export default function Hero() {
     const reduce = useReducedMotion();
+    const titleSize = useTitleFontSize();
+    const titleFontProps = { ...titleFont, fontSize: titleSize };
     const { scrollY } = useScroll();
     // Parallax factors preserved from the original script (0.18 / 0.05)
     const watermarkY = useTransform(scrollY, (y) => y * 0.18);
@@ -104,7 +121,7 @@ export default function Hero() {
                             <MeshText
                                 text="Eduardo"
                                 color="#F4F5F7"
-                                font={titleFont}
+                                font={titleFontProps}
                                 colorSplit={true}
                                 customColors={["#FF5A1F", "#F4F5F7"]}
                             />
@@ -115,7 +132,7 @@ export default function Hero() {
                             <MeshText
                                 text="Cruz"
                                 color="#F4F5F7"
-                                font={titleFont}
+                                font={titleFontProps}
                                 colorSplit={true}
                                 customColors={["#FF5A1F", "#F4F5F7"]}
                             />
