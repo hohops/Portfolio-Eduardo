@@ -1,0 +1,7 @@
+/* Originkit sections — Tailwind v4 entry.
+   Imported before styles.css so the portfolio's own CSS wins. */
+@import "tailwindcss";
+@import "./app/originkit-section-themes.css";
+@import "./app/originkit-section-theme.css";
+
+@source "./components/originkit";
