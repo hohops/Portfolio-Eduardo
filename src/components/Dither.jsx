@@ -148,10 +148,13 @@ export default function Dither({
             window.matchMedia("(prefers-reduced-motion: reduce)").matches;
         const animate = !disableAnimation && !reduced;
 
-        // Mobile / touch: cap DPI hard and throttle the frame loop so the
-        // fragment shader doesn't cook the device.
+        // Mobile / touch: cap DPI, render the buffer at a fraction of the
+        // screen (the retro dither looks fine upscaled), halve the noise
+        // octaves, and throttle the frame loop so the shader doesn't cook
+        // the device.
         const dprCap = coarse ? 1 : 1.5;
-        const targetInterval = coarse ? 1000 / 30 : 0; // 30fps cap on phones
+        const renderScale = coarse ? 0.5 : 1; // internal buffer vs CSS size
+        const targetInterval = coarse ? 1000 / 24 : 0; // 24fps cap on phones
 
         const renderer = new THREE.WebGLRenderer({
             antialias: !coarse,
@@ -184,7 +187,13 @@ export default function Dither({
 
         const material = new THREE.ShaderMaterial({
             vertexShader,
-            fragmentShader,
+            // Halve the noise octaves on touch — fbm is the costly part.
+            fragmentShader: coarse
+                ? fragmentShader.replace(
+                      "const int OCTAVES = 4;",
+                      "const int OCTAVES = 2;"
+                  )
+                : fragmentShader,
             uniforms,
             glslVersion: THREE.GLSL3,
         });
@@ -197,8 +206,11 @@ export default function Dither({
         const resize = () => {
             const w = container.clientWidth || 1;
             const h = container.clientHeight || 1;
-            renderer.setSize(w, h, false);
-            uniforms.resolution.value.set(w * dpr, h * dpr);
+            // Render to a smaller internal buffer on touch; CSS stretches it.
+            const rw = Math.max(1, Math.round(w * renderScale * dpr));
+            const rh = Math.max(1, Math.round(h * renderScale * dpr));
+            renderer.setSize(rw, rh, false);
+            uniforms.resolution.value.set(rw, rh);
             if (!animate || !inView.current) {
                 renderer.render(scene, camera);
             }
