@@ -1,5 +1,6 @@
 import Globe from "./originkit/ui/features-02/globe";
 import OrbitControls from "./originkit/ui/features-02/orbit-controls";
+import useIsPhone from "../hooks/useIsPhone.js";
 
 const A = "/originkit/features-02";
 
@@ -13,6 +14,7 @@ const FACTS = [
 ];
 
 export default function About() {
+    const isPhone = useIsPhone();
     return (
         <section
             id="about"
@@ -27,32 +29,36 @@ export default function About() {
                 <div className="absolute inset-0 mask-[linear-gradient(to_bottom,black_0%,black_48%,rgba(0,0,0,0.35)_52%,transparent_100%)] [-webkit-mask-image:linear-gradient(to_bottom,black_0%,black_48%,rgba(0,0,0,0.35)_72%,transparent_100%)]">
                     <div className="pointer-events-none absolute left-1/2 top-67 h-80 w-80 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle,rgba(255,255,255,0.10),transparent_70%)] sm:top-92.375 sm:h-82.75 sm:w-82.75" />
 
-                    <OrbitControls />
+                    {!isPhone && (
+                        <>
+                            <OrbitControls />
 
-                    <div className="pointer-events-auto absolute left-1/2 top-28 size-78 -translate-x-1/2 cursor-grab touch-none active:cursor-grabbing sm:top-51 sm:size-82.75">
-                        <div className="relative size-78 sm:size-82.75">
-                            <Globe
-                                direction="right"
-                                dots={{
-                                    color: "#FF5A1F",
-                                    size: 10,
-                                    density: 4,
-                                    allDots: false,
-                                }}
-                                speed={1}
-                                smoothing={0}
-                                stopOnHover={false}
-                                interactive
-                                dragSpeed={5}
-                                showOutline={false}
-                                showGrid={false}
-                                oceanColor="#0A0A0C"
-                                scale={9}
-                                initialLatitude={23}
-                                initialLongitude={-23}
-                            />
-                        </div>
-                    </div>
+                            <div className="pointer-events-auto absolute left-1/2 top-28 size-78 -translate-x-1/2 cursor-grab touch-none active:cursor-grabbing sm:top-51 sm:size-82.75">
+                                <div className="relative size-78 sm:size-82.75">
+                                    <Globe
+                                        direction="right"
+                                        dots={{
+                                            color: "#FF5A1F",
+                                            size: 10,
+                                            density: 4,
+                                            allDots: false,
+                                        }}
+                                        speed={1}
+                                        smoothing={0}
+                                        stopOnHover={false}
+                                        interactive
+                                        dragSpeed={5}
+                                        showOutline={false}
+                                        showGrid={false}
+                                        oceanColor="#0A0A0C"
+                                        scale={9}
+                                        initialLatitude={23}
+                                        initialLongitude={-23}
+                                    />
+                                </div>
+                            </div>
+                        </>
+                    )}
                 </div>
 
                 <div className="pointer-events-none absolute inset-x-0 bottom-0 h-40 bg-linear-to-b from-transparent to-black sm:h-28" />

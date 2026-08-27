@@ -8,6 +8,7 @@ import {
 } from "motion/react";
 import DottedBackground from "./originkit/ui/dotmatrix.tsx";
 import MeshText from "./originkit/ui/meshtexthover.tsx";
+import useIsPhone from "../hooks/useIsPhone.js";
 
 const titleFont = {
     fontFamily: "'Archivo Expanded Black'",
@@ -34,6 +35,7 @@ export default function Hero() {
     const reduce = useReducedMotion();
     const titleSize = useTitleFontSize();
     const titleFontProps = { ...titleFont, fontSize: titleSize };
+    const isPhone = useIsPhone();
     const { scrollY } = useScroll();
     // Parallax factors preserved from the original script (0.18 / 0.05)
     const watermarkY = useTransform(scrollY, (y) => y * 0.18);
@@ -90,12 +92,14 @@ export default function Hero() {
 
     return (
         <section className="hero" id="top">
-            <div className="hero__matrix" aria-hidden="true">
-                <DottedBackground
-                    bgColor="#0A0A0C"
-                    colors={["#F4F5F7", "#FF5A1F", "#0A0A0C"]}
-                />
-            </div>
+            {!isPhone && (
+                <div className="hero__matrix" aria-hidden="true">
+                    <DottedBackground
+                        bgColor="#0A0A0C"
+                        colors={["#F4F5F7", "#FF5A1F", "#0A0A0C"]}
+                    />
+                </div>
+            )}
 
             <motion.span
                 className="watermark"
@@ -110,7 +114,7 @@ export default function Hero() {
                 style={{ y: photoY }}
                 aria-hidden="true"
             >
-                <img src="/image-vscode.png" alt="" />
+                <img src="/Grupo%202.png" alt="" />
             </motion.figure>
 
             <div className="hero__content">
