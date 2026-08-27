@@ -140,16 +140,25 @@ export default function Dither({
         const container = containerRef.current;
         if (!container) return;
 
+        const coarse =
+            typeof window !== "undefined" &&
+            window.matchMedia("(pointer: coarse)").matches;
         const reduced =
             typeof window !== "undefined" &&
             window.matchMedia("(prefers-reduced-motion: reduce)").matches;
         const animate = !disableAnimation && !reduced;
 
+        // Mobile / touch: cap DPI hard and throttle the frame loop so the
+        // fragment shader doesn't cook the device.
+        const dprCap = coarse ? 1 : 1.5;
+        const targetInterval = coarse ? 1000 / 30 : 0; // 30fps cap on phones
+
         const renderer = new THREE.WebGLRenderer({
-            antialias: true,
+            antialias: !coarse,
             alpha: true,
+            powerPreference: "low-power",
         });
-        renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.5));
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, dprCap));
         const dpr = renderer.getPixelRatio();
         container.appendChild(renderer.domElement);
         renderer.domElement.style.width = "100%";
@@ -183,17 +192,23 @@ export default function Dither({
         const mesh = new THREE.Mesh(new THREE.PlaneGeometry(2, 2), material);
         scene.add(mesh);
 
+        const inView = { current: true };
+
         const resize = () => {
             const w = container.clientWidth || 1;
             const h = container.clientHeight || 1;
             renderer.setSize(w, h, false);
             uniforms.resolution.value.set(w * dpr, h * dpr);
+            if (!animate || !inView.current) {
+                renderer.render(scene, camera);
+            }
         };
         resize();
 
         const ro = new ResizeObserver(resize);
         ro.observe(container);
 
+        // Pointer tracking is pointless on touch — only wire it on fine pointers.
         const onMove = (e) => {
             if (!enableMouseInteraction) return;
             const rect = renderer.domElement.getBoundingClientRect();
@@ -202,29 +217,68 @@ export default function Dither({
                 (e.clientY - rect.top) * dpr
             );
         };
-        if (enableMouseInteraction) {
+        if (enableMouseInteraction && !coarse) {
             container.addEventListener("pointermove", onMove);
         }
 
         const clock = new THREE.Clock();
         let raf = null;
-        const tick = () => {
-            if (animate) {
-                uniforms.time.value = clock.getElapsedTime();
-                renderer.render(scene, camera);
-                raf = requestAnimationFrame(tick);
+        let last = 0;
+
+        const render = () => {
+            uniforms.time.value = clock.getElapsedTime();
+            renderer.render(scene, camera);
+        };
+
+        const loop = (now) => {
+            raf = requestAnimationFrame(loop);
+            if (targetInterval && now - last < targetInterval) return;
+            last = now;
+            render();
+        };
+
+        const start = () => {
+            if (raf != null) return;
+            if (targetInterval) last = 0;
+            raf = requestAnimationFrame(loop);
+        };
+        const stop = () => {
+            if (raf != null) {
+                cancelAnimationFrame(raf);
+                raf = null;
             }
         };
 
-        if (animate) {
-            raf = requestAnimationFrame(tick);
-        } else {
+        // Pause whenever the section scrolls off-screen or the tab is hidden —
+        // Contact sits well below the fold, so this saves battery on phones.
+        const io = new IntersectionObserver(
+            ([entry]) => {
+                inView.current = entry.isIntersecting;
+                if (entry.isIntersecting && animate) start();
+                else stop();
+                if (entry.isIntersecting) renderer.render(scene, camera);
+            },
+            { threshold: 0 }
+        );
+        io.observe(container);
+
+        const onVisibility = () => {
+            if (document.hidden) stop();
+            else if (inView.current && animate) start();
+        };
+        document.addEventListener("visibilitychange", onVisibility);
+
+        if (!animate) {
             renderer.render(scene, camera);
+        } else if (inView.current) {
+            start();
         }
 
         return () => {
-            if (raf) cancelAnimationFrame(raf);
+            stop();
             ro.disconnect();
+            io.disconnect();
+            document.removeEventListener("visibilitychange", onVisibility);
             container.removeEventListener("pointermove", onMove);
             mesh.geometry.dispose();
             material.dispose();
