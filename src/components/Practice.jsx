@@ -3,19 +3,19 @@ import Lane from "./Lane.jsx";
 
 const lanes = [
     {
-        name: "SysAdmin",
+        name: "",
+        image: "/Grupo%201.png",
         desc: "Uptime is a feature. I run, monitor, and harden the infrastructure behind the work.",
-        tools: ["Linux", "Windows Server", "Networking", "Monitoring"],
     },
     {
-        name: "DevSecOps",
+        name: "",
+        image: "/Grupo%202.png",
         desc: "Security baked into the pipeline — secure builds, hardening, and audits from day one.",
-        tools: ["Security Scanning", "SAST", "IAM", "Hardening"],
     },
     {
-        name: "DevOps",
+        name: "",
+        image: "/Grupo%203.png",
         desc: "The glue that ties it together. Pipelines, automation, and environments that behave.",
-        tools: ["Docker", "CI/CD", "Cloud", "IaC"],
     },
 ];
 
