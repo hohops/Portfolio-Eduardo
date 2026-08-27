@@ -113,9 +113,7 @@ export default function Hero() {
                 className="hero__photo"
                 style={{ y: photoY }}
                 aria-hidden="true"
-            >
-                <img src="/Grupo%202.png" alt="" />
-            </motion.figure>
+            />
 
             <div className="hero__content">
                 <p className="eyebrow hero__eyebrow">Portfolio — Lisbon, PT</p>
