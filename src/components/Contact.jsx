@@ -1,4 +1,5 @@
 import { motion, useReducedMotion } from "motion/react";
+import Dither from "./Dither.jsx";
 
 // TODO: replace the mailto address with your real email
 export default function Contact() {
@@ -11,6 +12,22 @@ export default function Contact() {
 
     return (
         <section className="section section--contact" id="contact">
+            <div className="contact__bg" aria-hidden="true">
+                <Dither
+                    waveColor={[
+                        0.9764705882352941, 0.45098039215686275,
+                        0.08627450980392157,
+                    ]}
+                    disableAnimation={false}
+                    enableMouseInteraction
+                    mouseRadius={0.9}
+                    colorNum={11}
+                    pixelSize={4}
+                    waveAmplitude={0.3}
+                    waveFrequency={3}
+                    waveSpeed={0.05}
+                />
+            </div>
             <motion.header
                 className="section__head"
                 transition={{ duration: 0.7, ease: [0.19, 1, 0.22, 1] }}
