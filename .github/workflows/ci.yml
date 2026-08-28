@@ -1,0 +1,15 @@
+name: CI
+
+on:
+    push:
+        branches: [master, main]
+
+jobs:
+  ci:
+    name: Type check, lint, format & build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Build
+        run: yarn build
+        
